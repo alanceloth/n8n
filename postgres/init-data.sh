@@ -1,13 +1,13 @@
-# Use a imagem oficial do Postgres como base
-FROM postgres:16
+#!/bin/bash
+set -e;
 
-# Defina as variáveis de ambiente necessárias
-ENV POSTGRES_USER=${POSTGRES_USER}
-ENV POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-ENV POSTGRES_DB=${POSTGRES_DB}
 
-# Copiar o script de inicialização para o container
-COPY ./init-data.sh /docker-entrypoint-initdb.d/init-data.sh
-
-# Exponha a porta do Postgres
-EXPOSE 5432
+if [ -n "${POSTGRES_NON_ROOT_USER:-}" ] && [ -n "${POSTGRES_NON_ROOT_PASSWORD:-}" ]; then
+	psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+		CREATE USER ${POSTGRES_NON_ROOT_USER} WITH PASSWORD '${POSTGRES_NON_ROOT_PASSWORD}';
+		GRANT ALL PRIVILEGES ON DATABASE ${POSTGRES_DB} TO ${POSTGRES_NON_ROOT_USER};
+		GRANT CREATE ON SCHEMA public TO ${POSTGRES_NON_ROOT_USER};
+	EOSQL
+else
+	echo "SETUP INFO: No Environment variables given!"
+fi
