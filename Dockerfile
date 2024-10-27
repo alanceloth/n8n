@@ -22,5 +22,3 @@ ENV DB_TYPE=postgresdb \
 # Expor a porta para que o n8n possa ser acessado
 EXPOSE 5678
 
-# Crie um volume para armazenar os dados persistentes do n8n
-VOLUME ["/home/node/.n8n"]
