@@ -31,7 +31,7 @@ services:
       sizeGB: 1
 
   - name: postgres
-    type: private_service
+    type: web
     env: docker
     region: oregon
     plan: free 
