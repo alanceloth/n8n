@@ -3,20 +3,20 @@ FROM docker.n8n.io/n8nio/n8n
 
 # Defina variáveis de ambiente para o banco de dados PostgreSQL
 ENV DB_TYPE=postgresdb \
-    DB_POSTGRESDB_DATABASE=${POSTGRES_DATABASE} \
-    DB_POSTGRESDB_HOST=${POSTGRES_HOST} \
-    DB_POSTGRESDB_PORT=${POSTGRES_PORT} \
-    DB_POSTGRESDB_USER=${POSTGRES_USER} \
-    DB_POSTGRESDB_SCHEMA=${POSTGRES_SCHEMA} \
-    DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD} \
-    DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED=${POSTGRES_SSL_REJECT_UNAUTHORIZED} \
-    DB_POSTGRESDB_SSL_ENABLED=${POSTGRES_SSL_ENABLED} \
-    WEBHOOK_URL=${WEBHOOK_URL} \
-    WEBHOOK_TUNNEL_URL=${WEBHOOK_TUNNEL_URL} \
-    VUE_APP_URL_BASE_API=${VUE_APP_URL_BASE_API} \
-    N8N_HOST=${N8N_HOST} \
-    POSTGRES_NON_ROOT_PASSWORD=${POSTGRES_NON_ROOT_PASSWORD} \
-    POSTGRES_NON_ROOT_USER=${POSTGRES_NON_ROOT_USER}
+    DB_POSTGRESDB_DATABASE="n8n_xx29" \
+    DB_POSTGRESDB_HOST="dpg-cseq9n8gph6c73espvog-a.oregon-postgres.render.com" \
+    DB_POSTGRESDB_PORT="5432" \
+    DB_POSTGRESDB_USER="n8n_user"\
+    DB_POSTGRESDB_SCHEMA="public"\
+    DB_POSTGRESDB_PASSWORD="xbC25KQIgUawyfqOvyMmOpViYh6jTDzK"\
+    DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED="false" \
+    DB_POSTGRESDB_SSL_ENABLED="true"\
+    WEBHOOK_URL="https://n8n-dev-atv8.onrender.com"\
+    WEBHOOK_TUNNEL_URL="https://n8n-dev-atv8.onrender.com" \
+    VUE_APP_URL_BASE_API="https://n8n-dev-atv8.onrender.com" \
+    N8N_HOST="n8n-dev-atv8.onrender.com" \
+    POSTGRES_NON_ROOT_PASSWORD="db_password" \
+    POSTGRES_NON_ROOT_USER="n8n_user"
 
 
 # Expor a porta para que o n8n possa ser acessado
