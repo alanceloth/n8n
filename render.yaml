@@ -20,8 +20,6 @@ services:
         fromSecret: POSTGRES_NON_ROOT_USER
       - key: DB_POSTGRESDB_PASSWORD
         fromSecret: POSTGRES_NON_ROOT_PASSWORD
-    port:
-      - 5678  # Porta que será exposta
     healthCheckPath: /
     autoDeploy: true
     disk:
