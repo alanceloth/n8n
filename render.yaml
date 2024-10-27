@@ -2,6 +2,8 @@ services:
   - name: n8n
     type: web
     env: docker
+    image: 
+      url: docker.n8n.io/n8nio/n8n
     region: oregon
     plan: free  
     dockerCommand: "n8n start"  # Comando de inicialização, ajuste conforme necessário
@@ -18,14 +20,11 @@ services:
         fromSecret: POSTGRES_NON_ROOT_USER
       - key: DB_POSTGRESDB_PASSWORD
         fromSecret: POSTGRES_NON_ROOT_PASSWORD
-    ports:
+    port:
       - 5678  # Porta que será exposta
     healthCheckPath: /
     autoDeploy: true
-    dependsOn:
-      - name: postgres
-        condition: service_healthy
-    persistentDisk:
+    disk:
       name: n8n_storage
       mountPath: /home/node/.n8n
       sizeGB: 1
@@ -35,7 +34,8 @@ services:
     env: docker
     region: oregon
     plan: free 
-    image: postgres:16 
+    image: 
+      url: docker.io/postgres:16
     envVars:
       - key: POSTGRES_USER
         fromSecret: POSTGRES_USER
@@ -47,10 +47,8 @@ services:
         fromSecret: POSTGRES_NON_ROOT_USER
       - key: POSTGRES_NON_ROOT_PASSWORD
         fromSecret: POSTGRES_NON_ROOT_PASSWORD
-    healthCheckCommand: 
-      - "pg_isready -h localhost -U ${POSTGRES_USER} -d ${POSTGRES_DB}"
     autoDeploy: true
-    persistentDisk:
+    disk:
       name: db_storage
       mountPath: /var/lib/postgresql/data
       sizeGB: 1 
