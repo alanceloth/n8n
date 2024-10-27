@@ -16,5 +16,5 @@ EXPOSE 5678
 # Crie um volume para armazenar os dados persistentes do n8n
 VOLUME ["/home/node/.n8n"]
 
-# Comando para iniciar o n8n
-CMD ["n8n", "start"]
+# Especificar caminho completo para o binário n8n
+CMD ["/usr/local/bin/n8n", "start"]
